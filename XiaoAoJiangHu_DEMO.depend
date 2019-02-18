@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1550476683 source:d:\studies\c\xajh\xiaoaojianghu_demo\gamelib.c
+	"GameLib.h"
+
+1550479698 d:\studies\c\xajh\xiaoaojianghu_demo\gamelib.h
+	<windows.h>
+
