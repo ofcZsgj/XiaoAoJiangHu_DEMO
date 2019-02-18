@@ -1,7 +1,17 @@
 # depslib dependency file v1.0
-1550476683 source:d:\studies\c\xajh\xiaoaojianghu_demo\gamelib.c
+1550495357 source:d:\studies\c\xajh\xiaoaojianghu_demo\gamelib.c
 	"GameLib.h"
 
-1550479698 d:\studies\c\xajh\xiaoaojianghu_demo\gamelib.h
+1550500153 d:\studies\c\xajh\xiaoaojianghu_demo\gamelib.h
+	<windows.h>
+
+1550501164 source:d:\studies\c\xajh\xiaoaojianghu_demo\game.c
+	"Game.h"
+	"GameLib.h"
+
+1550501180 d:\studies\c\xajh\xiaoaojianghu_demo\game.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
 	<windows.h>
 

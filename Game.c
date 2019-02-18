@@ -5,6 +5,9 @@
 #include "Game.h"
 #include "GameLib.h"
 
+int X = 0;
+int Y = 0;
+
 //#define SEP "------------------------------------------------------------------------------"
 #define COL 78                //游戏的界面的总宽度
 #define MAXGIN_X 20           //游戏界面与控制台的左边距
@@ -140,11 +143,13 @@ void ShowMap() {                                //8 * 8 地图, 8 * 77 区域
     printf("*");
     for(int i = 0; i < (MAPSART_END_Y - MAPSART_START_Y); i++) {
         SetPosition(MAXGIN_X, i + MAPSART_START_Y);      //调节光标使每一行首打印'*'字符
+        printf("*    ");
         for(int j = 0; j < (MAPSART_END_Y - MAPSART_START_Y); j++) {
-            if(j == 0) {
-                printf("*    ");
+            if(j == X && i == Y) {       //高亮显示光标所对应的地图
+                SetColor(4, 7);
             }
             printf("%-9s", mapArray[j][i].name);
+            SetColor(2,0);              //恢复文字颜色
             if(j == MAPSART_END_Y - MAPSART_START_Y - 1) {
                 printf("*");    //调节光标使每一行尾打印'|'字符
             }
@@ -174,7 +179,6 @@ void ShowMainMenu() {
         SetPosition(MAXGIN_X + ENDINFO, MAINMENUE_START_Y + i);
         printf("*");
     }
-
     SetPosition(MAXGIN_X + 34, MAINMENUE_START_Y);
     printf("游戏菜单:");
     SetPosition(MAXGIN_X +31, MAINMENUE_START_Y + 1);
@@ -190,7 +194,7 @@ void ShowMainMenu() {
     SetPosition(MAXGIN_X + 31, MAINMENUE_START_Y + 6);
     printf("6: 到此一游(敬请期待)");
     SetPosition(MAXGIN_X + 31, MAINMENUE_START_Y + 7);
-    printf("7: 充值元宝(敬请期待)");
+    printf("7: 退出游戏");
     SetPosition(MAXGIN_X, MAINMENUE_END_Y);
     printf("%s", SEP);
 }
