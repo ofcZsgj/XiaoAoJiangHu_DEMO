@@ -9,9 +9,16 @@
 	"Game.h"
 	"GameLib.h"
 
-1550501180 d:\studies\c\xajh\xiaoaojianghu_demo\game.h
+1550584079 d:\studies\c\xajh\xiaoaojianghu_demo\game.h
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
 	<windows.h>
+
+1550590898 source:d:\studies\c\xajh\xiaoaojianghu_demo\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"Game.h"
+	"GameLib.h"
 

@@ -10,6 +10,7 @@ int main() {
     char key;           //接收用户输入
     SetColor(2,0);      //设置控制台文本颜色
     SetConsoleTitle("笑傲江湖之精忠报国 C语言实现 BY 左手工匠");    //设置控制台标题
+    PropInit();         //初始化测试人物
     ShowWelcome();      //显示欢迎栏
     ShowMap();          //显示地图
     ShowInformation();  //显示信息栏
@@ -19,7 +20,8 @@ while (1) {
     key = getch();
     fflush(stdin);
     if(key == '1' || key == '2' || key == '3' || key == '4'){
-        printf("功能可好用?\n");
+        GameProcess(key);
+        continue;
     }
     else if(key == '5' || key == '6' ){
         printf("放过我吧, 还没开发完呐!!!\n");

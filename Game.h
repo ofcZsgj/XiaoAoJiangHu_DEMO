@@ -62,6 +62,42 @@ typedef  struct _prop {
     char desc[200];         //道具描述
 } Prop;
 
+/** 玩家数据类型 */
+typedef struct  _play {
+    char name[30];          //玩家名称
+    char id[10];            //玩家编号
+    char passwd[30];        //玩家密码
+    int level;              //玩家等级
+    int exp;                //经验值
+    int hp;                 //血量
+    int mp;                 //内力
+    int gold;               //金币
+    // 玩家门派 (尚未定义门派)
+
+    Prop weapon;            //装备的武器
+    Prop armor;             //装备的防具
+    COORD coord;            //玩家当前坐标 (X, Y)
+    // 玩家背包 (尚未定义背包)
+
+} Play;
+
+/** 怪物数据类型 */
+typedef struct _monster {
+    int id;
+    char name[20];           //怪物名称
+    int level;               //怪物等级
+    int hp;                  //血量
+    int attact;              //攻击力
+    int defence;             //防御力
+    int minMoney;            //掉落的最小金钱
+    int maxMoney;            //掉落的最大金钱
+    int exp;                 //玩家能获取的经验值
+    int state;               //怪物的状态 (0 为死亡, 1 为存活)
+    COORD coord;             //怪物的坐标
+    // 怪物死亡后的掉落装备列表
+
+} Monster;
+
 /** 初始化游戏数据 */
 void PropInit();
 
@@ -77,13 +113,24 @@ void ShowMap();
 /** 显示地图信息 */
 void ShowMapInfo();
 
+/** 显示游戏的主菜单 */
+void ShowMainMenu();
+
 /** 清除信息区内所有内容(给定坐标及清理的行数) */
 void Clear(int x, int y, int rowCount);
 
 /** 显示游戏下方的信息面板 */
 void ShowInformation();
 
-/** 显示游戏的主菜单 */
-void ShowMainMenu();
+/** 显示玩家当前信息 */
+void ShowPlayerInfo();
+
+/** 显示当前地图的怪物 */
+void ShowMonster();
+
+/** 执行游戏主菜单功能 */
+void GameProcess(char key);
+
+
 
 #endif // GAME_H_INCLUDED

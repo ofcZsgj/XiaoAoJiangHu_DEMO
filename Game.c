@@ -19,7 +19,47 @@ int Y = 0;
 #define MAINMENUE_START_Y 20  //游戏主菜单开始行
 #define MAINMENUE_END_Y 28  //游戏主菜单结束行
 #define SEP "*******************************************************************************"
-Map mapArray[8][8] = {
+
+Play playArray[] = {//测试玩家列表
+    {"左手工匠", "95001", "0115", 100, 99999, 99999, 99999, 999999, .coord.X = 0, .coord.Y = 3},
+    {"ofcZsgj", "95002", "0115", 100, 99999, 99999, 99999, 999999, .coord.X = 0, .coord.Y = 0},
+};
+
+Monster monsterArray[] = {//怪物列表
+    {1, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=0},
+    {2, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=1},
+    {3, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=2},
+    {4, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=3},
+    {5, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=4},
+    {6, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=5},
+    {7, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=6},
+    {8, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=7},
+    {9, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=0},
+    {10, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=1},
+    {11, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=2},
+    {12, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=3},
+    {13, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=4},
+    {14, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=5},
+    {15, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=6},
+    {16, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=7},
+    {17, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=0},
+    {18, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=1},
+    {19, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=2},
+    {20, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=3},
+    {21, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=4},
+    {22, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=5},
+    {23, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
+    {24, "浪人", 5, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
+    {25, "浪人", 6, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
+    {26, "浪人", 7, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
+    {27, "浪人", 8, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
+    {28, "浪人", 9, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
+    {29, "浪人", 9, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
+    {30, "浪人", 9, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
+    {31, "浪人", 9, 30000, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6}
+};
+
+Map mapArray[8][8] = {//游戏地图列表
         {
             {1, "天山",   1, {0, 0}, "据《穆天子传》记载，3000年前的周朝穆王曾乘坐\"八骏马车\"西行天山，西王母在天池接见了他。穆王赠送大批锦绸美绢等中原特产，西王母则回赠了天山的奇珍瑰宝，并邀请穆王游览天山名胜。穆王亲书\"西王母之山\"，留作纪念。临别时，西王母劝饮再三，即席歌曰:\"祝君长寿，愿君再来。\""},
             {2, "楼兰",   1, {1, 0}, "东通敦煌，西北到焉耆、尉犁，西南到若羌、且末。古代“丝绸之路”的南、北两道从楼兰分道。"},
@@ -102,7 +142,7 @@ Map mapArray[8][8] = {
         },
 };//八个一维数组分别使用{}的原因为编译器对维度产生了混淆, 导致打印地图只有第一个一维数组!!!
 
-Prop propArray[] = {
+Prop propArray[] = {//游戏道具列表
         {1, "嵩阳古剑" ,1000, 1, Weapon, 50, .minAttack = 16, .maxAttack = 22, "剑是老了点，可砍起人来一点都不含糊。实在不想用，当古董卖好了!"},
         {2, "形意六合棍", 2000, 2, Weapon, 40, .minAttack = 30, .maxAttack = 38, "虽然名为“六合”，可传说中的高手却能用它使出八种猛兽的形态，你呢？"},
         {3, "暴雨梨花针", 5000, 3, Weapon, 35, .minAttack = 55, .maxAttack = 78, "出必见血，空回不祥，急中之急，暗器之王！气死人了，这暴风骤雨般的梨花针怎么躲得开嘛！难道非逼人穿“防弹背心”不成？"},
@@ -114,8 +154,11 @@ Prop propArray[] = {
         {9, "八宝玲珑枪", 50000, 9, Weapon, 3, .minAttack = 2488, .maxAttack = 3244, "枪身镶有八种宝物。拥有此枪之人，可以说拥有了一笔不小的财富！"},
 };
 
+Play *currPlayer;
 void PropInit() {
-
+    currPlayer = &playArray[0];
+    currPlayer->weapon = propArray[8];
+    currPlayer->armor = propArray[4];
 }
 
 /** 打印道具类数据 */
@@ -201,7 +244,7 @@ void ShowInformation() {
 
 /** 显示游戏的主菜单 */
 void ShowMainMenu() {
-    for(int i =  0; i < MAINMENUE_END_Y - MAINMENUE_START_Y; i++) {
+    for(int i = 0; i < MAINMENUE_END_Y - MAINMENUE_START_Y; i++) {
         SetPosition(MAXGIN_X, MAINMENUE_START_Y + i);
         printf("*");
         SetPosition(MAXGIN_X + ENDINFO, MAINMENUE_START_Y + i);
@@ -225,4 +268,72 @@ void ShowMainMenu() {
     printf("7: 退出游戏");
     SetPosition(MAXGIN_X, MAINMENUE_END_Y);
     printf("%s", SEP);
+}
+
+/** 显示玩家当前信息 */
+void ShowPlayerInfo() {
+    Clear(MAXGIN_X, INFORMATION_START_Y, 7);
+    SetPosition(MAXGIN_X + 26, INFORMATION_START_Y);
+    printf("大侠 %s 的装备属性如下: ", currPlayer->name);
+    SetPosition(MAXGIN_X + 10, INFORMATION_START_Y + 1);
+    printf("等级: %d\t 金币: %d\t  气血值: %d\t  内力值: %d\t", currPlayer->level, currPlayer->gold, currPlayer->hp, currPlayer->mp);
+    SetPosition(MAXGIN_X + 10, INFORMATION_START_Y + 2);
+    printf("当前武器: %s\t 当前防具: %s", currPlayer->weapon.name, currPlayer->armor.name);
+}
+
+/** 执行游戏主菜单功能 */
+void GameProcess(char key) {
+    switch (key) {
+        case '1': ShowPlayerInfo();//显示玩家个人信息
+            break;
+        case '2': ShowMonster();//显示当前地图的怪物
+            break;
+        case '3':
+            break;
+        case '4':
+            break;
+        default : printf("少侠究竟想要作甚?");
+    }
+}
+
+/** 显示当前地图的怪物(功能略复杂些) */
+void ShowMonster() {
+    //给怪物各个等级对应相应称号
+    //例如：3级怪物，那么就显示这个怪物的描述为粗通皮毛
+    char *monsterlevelNames[] = {"乳臭未干", "初出茅庐", "粗通皮毛", "青年才俊", "略有小成", "心领神会", "出类拔萃", "所向无敌", "天人合一"};
+    Clear(MAXGIN_X,  INFORMATION_START_Y, 7);   //清空信息区的所有内容
+    int monsterCount;
+    // 记录整个游戏的怪物总数
+    monsterCount = sizeof(monsterArray) / sizeof(Monster);
+    //记录当前地图的怪数量 记得变量定义时赋初值!!! debug了好久...
+    int currMapMonsterCount = 0;
+    // 定义一个只有九个空间的一维数组, 用以记录怪物在怪物列表里的下标
+    int monsterIndex[9];
+    for(int i = 0; i < monsterCount; i++) {
+        // 关键!!! 满足怪物坐标与当前地图坐标相等 并且 该怪物的状态为存活的条件, 将怪物与怪物数组的下标记录并且当前地图怪物数量自增
+        if(monsterArray[i].coord.X == X && monsterArray[i].coord.Y == Y && monsterArray[i].state == 1) {
+            // 记录下标
+            monsterIndex[currMapMonsterCount] = i;
+            currMapMonsterCount++;
+            // 设定每个地图最多显示 9 个怪物
+            if(currMapMonsterCount == 9) {
+                break;
+            }
+        }
+    }
+    // 打印怪物
+    SetPosition(MAXGIN_X + 5, INFORMATION_START_Y + 1);
+    if(currMapMonsterCount == 0) {
+        printf("这里冷冷清清的什么也没有, 少侠还是到别处看看吧, 呆着也没银子给你!");
+        return;
+    }
+    SetPosition(MAXGIN_X + 20, INFORMATION_START_Y + 1);
+    printf("少侠, 这儿有怪物! 要为百姓除暴安良吗?" );
+    SetPosition(MAXGIN_X + 5, INFORMATION_START_Y + 2);
+    for(int i = 0; i < currMapMonsterCount; i++) {
+        if(i % 3 == 0 && i != 0){
+            SetPosition(MAXGIN_X + 5, INFORMATION_START_Y + 2 + i / 3);
+        }
+        printf("(%s)%s\t\t", monsterArray[monsterIndex[i]].name, monsterlevelNames[monsterArray[monsterIndex[i]].level - 1]);
+    }
 }
