@@ -74,6 +74,12 @@ void ShowWelcome();
 /** 显示游戏地图 */
 void ShowMap();
 
+/** 显示地图信息 */
+void ShowMapInfo();
+
+/** 清除信息区内所有内容(给定坐标及清理的行数) */
+void Clear(int x, int y, int rowCount);
+
 /** 显示游戏下方的信息面板 */
 void ShowInformation();
 
