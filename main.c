@@ -24,6 +24,9 @@ while (1) {
         continue;
     }
     else if(key == '5' || key == '6' ){
+        SetPosition(20, 12);
+        Clear(20 , 12, 7);
+        SetPosition(20 + 5, 12 + 2);
         printf("放过我吧, 还没开发完呐!!!\n");
     }
     else if(key == '7') {

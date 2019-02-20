@@ -64,6 +64,16 @@ typedef  struct _prop {
     char desc[200];         //道具描述
 } Prop;
 
+/* 门派 */
+typedef struct _martial{
+    int id;         //门派编号
+    char name[20];  //门派名称
+    char type[10];  //门派类型：正派、邪派、亦正亦邪
+    COORD hqCoord;  //总部坐标（X-行，Y-列），与正常坐标轴相反
+    int isOpen;     //是否开放(人民币玩家更多门派, 后期再开发)
+    char description[1000];//门派描述
+}Martial;
+
 /** 玩家数据类型 */
 typedef struct  _play {
     char name[30];          //玩家名称
@@ -74,8 +84,7 @@ typedef struct  _play {
     int hp;                 //血量
     int mp;                 //内力
     int gold;               //金币
-    // 玩家门派 (尚未定义门派)
-
+    Martial martial;        //所属门派
     Prop weapon;            //装备的武器
     Prop armor;             //装备的防具
     COORD coord;            //玩家当前坐标 (X, Y)
@@ -135,5 +144,8 @@ void GameProcess(char key);
 
 /** 选定怪物进行对战 */
 void MonsterFight(Monster *monster);
+
+/** 移动坐标 */
+void Move(int x, int y);
 
 #endif // GAME_H_INCLUDED
