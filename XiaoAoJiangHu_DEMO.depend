@@ -5,17 +5,19 @@
 1550500153 d:\studies\c\xajh\xiaoaojianghu_demo\gamelib.h
 	<windows.h>
 
-1550501164 source:d:\studies\c\xajh\xiaoaojianghu_demo\game.c
+1550662382 source:d:\studies\c\xajh\xiaoaojianghu_demo\game.c
 	"Game.h"
 	"GameLib.h"
 
-1550584079 d:\studies\c\xajh\xiaoaojianghu_demo\game.h
+1550671392 d:\studies\c\xajh\xiaoaojianghu_demo\game.h
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
+	<time.h>
 	<windows.h>
+	<unistd.h>
 
-1550590898 source:d:\studies\c\xajh\xiaoaojianghu_demo\main.c
+1550635729 source:d:\studies\c\xajh\xiaoaojianghu_demo\main.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>

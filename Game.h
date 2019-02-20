@@ -8,7 +8,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 #include <windows.h>
+#include <unistd.h>
 
 /********************************************************************
  *  Project:笑傲江湖之精忠报国Demo
@@ -79,7 +81,7 @@ typedef struct  _play {
     COORD coord;            //玩家当前坐标 (X, Y)
     // 玩家背包 (尚未定义背包)
 
-} Play;
+} Player;
 
 /** 怪物数据类型 */
 typedef struct _monster {
@@ -131,6 +133,7 @@ void ShowMonster();
 /** 执行游戏主菜单功能 */
 void GameProcess(char key);
 
-
+/** 选定怪物进行对战 */
+void MonsterFight(Monster *monster);
 
 #endif // GAME_H_INCLUDED

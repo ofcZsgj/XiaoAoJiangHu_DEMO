@@ -20,43 +20,51 @@ int Y = 0;
 #define MAINMENUE_END_Y 28  //游戏主菜单结束行
 #define SEP "*******************************************************************************"
 
-Play playArray[] = {//测试玩家列表
+Player playArray[] = {//测试玩家列表
     {"左手工匠", "95001", "0115", 100, 99999, 99999, 99999, 999999, .coord.X = 0, .coord.Y = 3},
     {"ofcZsgj", "95002", "0115", 100, 99999, 99999, 99999, 999999, .coord.X = 0, .coord.Y = 0},
 };
 
 Monster monsterArray[] = {//怪物列表
     {1, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=0},
-    {2, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=1},
+    {2, "鬼子", 4, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=1},
     {3, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=2},
-    {4, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=3},
+    {4, "鬼子", 3, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=3},
     {5, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=4},
     {6, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=5},
-    {7, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=6},
-    {8, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=7},
+    {7, "鬼子", 4, 100, 5, 5, 1, 3, 10, 1, .coord.X=3, .coord.Y=0},
+    {8, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=3, .coord.Y=5},
     {9, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=0},
     {10, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=1},
     {11, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=2},
-    {12, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=3},
-    {13, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=4},
-    {14, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=5},
-    {15, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=6},
-    {16, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=7},
+    {12, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=2, .coord.Y=3},
+    {13, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=2, .coord.Y=4},
+    {14, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=2, .coord.Y=5},
+    {15, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=4, .coord.Y=4},
+    {16, "汉奸", 4, 200, 8, 12, 1, 8, 11, 1, .coord.X=1, .coord.Y=7},
     {17, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=0},
     {18, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=1},
-    {19, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=2},
-    {20, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=3},
+    {19, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=4, .coord.Y=2},
+    {20, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=3, .coord.Y=3},
     {21, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=4},
-    {22, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=5},
-    {23, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
-    {24, "浪人", 5, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
-    {25, "浪人", 6, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
-    {26, "浪人", 7, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
-    {27, "浪人", 8, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
-    {28, "浪人", 9, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
-    {29, "浪人", 9, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
-    {30, "浪人", 9, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
-    {31, "浪人", 9, 30000, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=6}
+    {22, "浪人", 4, 300, 50, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=5},
+    {23, "浪人", 4, 300, 50, 10, 3, 8, 20, 1, .coord.X=5, .coord.Y=6},
+    {24, "浪人", 5, 1000, 70, 30, 3, 8, 20, 1, .coord.X=2, .coord.Y=2},
+    {25, "浪人", 6, 1500, 100, 40, 3, 8, 20, 1, .coord.X=0, .coord.Y=4},
+    {26, "浪人", 7, 2000, 300, 70, 3, 8, 20, 1, .coord.X=6, .coord.Y=2},
+    {27, "浪人", 8, 2500, 350, 80, 3, 8, 20, 1, .coord.X=0, .coord.Y=3},
+    {28, "浪人", 9, 3000, 400, 100, 3, 8, 20, 1, .coord.X=4, .coord.Y=1},
+    {29, "浪人", 9, 3000, 400, 100, 3, 8, 20, 1, .coord.X=3, .coord.Y=2},
+    {30, "浪人", 9, 3000, 400, 100, 3, 8, 20, 1, .coord.X=0, .coord.Y=5},
+    {31, "浪人", 9, 3000, 400, 100, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
+    {32, "浪人", 5, 2000, 700, 30, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
+    {33, "浪人", 4, 1000, 170, 30, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
+    {34, "浪人", 8, 3000, 370, 300, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
+    {35, "鬼子", 7, 4200, 250, 250, 1, 3, 10, 1, .coord.X=0, .coord.Y=6},
+    {36, "鬼子", 5, 1500, 205, 150, 1, 3, 10, 1, .coord.X=0, .coord.Y=6},
+    {37, "鬼子", 7, 2000, 365, 350, 1, 3, 10, 1, .coord.X=0, .coord.Y=6},
+    {38, "浪人", 8, 3000, 400, 100, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
+    {39, "浪人", 6, 3000, 400, 100, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
 };
 
 Map mapArray[8][8] = {//游戏地图列表
@@ -147,14 +155,14 @@ Prop propArray[] = {//游戏道具列表
         {2, "形意六合棍", 2000, 2, Weapon, 40, .minAttack = 30, .maxAttack = 38, "虽然名为“六合”，可传说中的高手却能用它使出八种猛兽的形态，你呢？"},
         {3, "暴雨梨花针", 5000, 3, Weapon, 35, .minAttack = 55, .maxAttack = 78, "出必见血，空回不祥，急中之急，暗器之王！气死人了，这暴风骤雨般的梨花针怎么躲得开嘛！难道非逼人穿“防弹背心”不成？"},
         {4, "踏月襟", 20000, 7, Armor, 10, .minDefence = 28, .maxDefence = 34, "举头望月, 看到了吗, 那就是月亮的力量啊, 化月光之力为我挡伤害!"},
-        {5, "斩霜金轮", 50000, 9, Armor, 3, .minDefence = 1688, .maxDefence = 1982, "神秘的光晕, 一圈圈的涟漪在金轮荡漾, 谁也不知道它从何而来, 但它的光辉无人能侵!"},
+        {5, "斩霜金轮", 50000, 9, Armor, 3, .minDefence = 200, .maxDefence = 300, "神秘的光晕, 一圈圈的涟漪在金轮荡漾, 谁也不知道它从何而来, 但它的光辉无人能侵!"},
         {6, "金创药", 2000, 3, Con, 50, .minPower = 500, .maxPower = 600, "金创药，俗称刀尖药，其实是一种药的商用名，比如，跌打药，专治跌打损伤, 少侠可要来一份"},
         {7, "真气丸", 2500, 4, Con, 50, .minPower = 500, .maxPower = 600, "燃烧内力, 迅速补充全身能量, 打开你的三万六千个毛孔, 以汲取天地日月精华!"},
-        {8, "穿云裂石戟", 45000, 8, Weapon, 5, .minAttack = 1500, .maxAttack = 1800, "在海中呆了一万年的它，很可能并非地球之物。劝你小心保管，说不定哪天外星人从天而降，把此戟收回可就太不划算了！"},
-        {9, "八宝玲珑枪", 50000, 9, Weapon, 3, .minAttack = 2488, .maxAttack = 3244, "枪身镶有八种宝物。拥有此枪之人，可以说拥有了一笔不小的财富！"},
+        {8, "穿云裂石戟", 45000, 8, Weapon, 5, .minAttack = 300, .maxAttack = 600, "在海中呆了一万年的它，很可能并非地球之物。劝你小心保管，说不定哪天外星人从天而降，把此戟收回可就太不划算了！"},
+        {9, "八宝玲珑枪", 50000, 9, Weapon, 3, .minAttack = 400, .maxAttack = 700, "枪身镶有八种宝物。拥有此枪之人，可以说拥有了一笔不小的财富！"},
 };
 
-Play *currPlayer;
+Player *currPlayer;
 void PropInit() {
     currPlayer = &playArray[0];
     currPlayer->weapon = propArray[8];
@@ -278,7 +286,14 @@ void ShowPlayerInfo() {
     SetPosition(MAXGIN_X + 10, INFORMATION_START_Y + 1);
     printf("等级: %d\t 金币: %d\t  气血值: %d\t  内力值: %d\t", currPlayer->level, currPlayer->gold, currPlayer->hp, currPlayer->mp);
     SetPosition(MAXGIN_X + 10, INFORMATION_START_Y + 2);
-    printf("当前武器: %s\t 当前防具: %s", currPlayer->weapon.name, currPlayer->armor.name);
+    printf("当前武器:");
+    SetColor(5,0);
+    printf("%s(%d-%d) ", currPlayer->weapon.name, currPlayer->weapon.minAttack,currPlayer->weapon.maxAttack);
+    SetColor(2,0);
+    printf("当前防具:");
+    SetColor(5,0);
+    printf("%s(%d-%d)", currPlayer->armor.name, currPlayer->armor.minDefence,currPlayer->armor.maxAttack);
+    SetColor(2,0);
 }
 
 /** 执行游戏主菜单功能 */
@@ -296,7 +311,7 @@ void GameProcess(char key) {
     }
 }
 
-/** 显示当前地图的怪物(功能略复杂些) */
+/** 显示当前地图的怪物********(功能略复杂些)*************/
 void ShowMonster() {
     //给怪物各个等级对应相应称号
     //例如：3级怪物，那么就显示这个怪物的描述为粗通皮毛
@@ -327,13 +342,120 @@ void ShowMonster() {
         printf("这里冷冷清清的什么也没有, 少侠还是到别处看看吧, 呆着也没银子给你!");
         return;
     }
-    SetPosition(MAXGIN_X + 20, INFORMATION_START_Y + 1);
-    printf("少侠, 这儿有怪物! 要为百姓除暴安良吗?" );
-    SetPosition(MAXGIN_X + 5, INFORMATION_START_Y + 2);
-    for(int i = 0; i < currMapMonsterCount; i++) {
-        if(i % 3 == 0 && i != 0){
-            SetPosition(MAXGIN_X + 5, INFORMATION_START_Y + 2 + i / 3);
+
+/*********以下语句为判定用户输入的编号来返回地图信息或进行打怪操作*******/
+    int pkMonsterId = 0;// 接收玩家输入的怪物编号, 定义在循环外部是因为循环外仍需使用进行判断是否打印地图信息
+    while(1){
+        pkMonsterId = -1;
+        Clear(MAXGIN_X,  INFORMATION_START_Y, 7);   //清空信息区的所有内容
+        SetPosition(MAXGIN_X + 20, INFORMATION_START_Y + 0);
+        printf("少侠, 这儿有怪物! 要为百姓除暴安良吗?" );
+        SetPosition(MAXGIN_X + 5, INFORMATION_START_Y + 2);
+        for(int i = 0; i < currMapMonsterCount; i++) {
+            if(i % 3 == 0 && i != 0){//每行打印三个怪物
+                SetPosition(MAXGIN_X + 5, INFORMATION_START_Y + 2 + i / 3);
+            }
+            //打印怪物, 较为繁琐
+            //monsterIndex[i]即为该怪物列表中的怪物编号
+            printf("%d.%s(%s)\t  ", i + 1, monsterArray[monsterIndex[i]].name, monsterlevelNames[monsterArray[monsterIndex[i]].level - 1]);
         }
-        printf("(%s)%s\t\t", monsterArray[monsterIndex[i]].name, monsterlevelNames[monsterArray[monsterIndex[i]].level - 1]);
+        SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
+        printf("少侠想攻击几号怪物呢? (按0返回)");
+        scanf("%d", &pkMonsterId);
+        if(pkMonsterId == 0) {//输入0, 退出循环来返回显示地图信息
+            break;
+        }
+        else if(pkMonsterId < 0 || pkMonsterId > currMapMonsterCount) {
+            //输入的怪物标号在当前地图不存在
+            SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
+            //简易清屏
+            printf("                                                             ");
+            SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
+            printf("少侠选错了吧, 怪物不存在呢!(按任意键重新输入)");
+            char recoverKey = getchar();
+            if(!recoverKey){//停顿直到接收任意键后重新显示怪物
+                continue;
+            }
+        }
+        else {//编号对应地图所有的怪物时, 将怪物地址传入打怪方法
+            MonsterFight(&monsterArray[monsterIndex[pkMonsterId - 1]]);
+            break;
+        }
     }
+    if(pkMonsterId == 0) {//输入0, 返回显示地图信息
+        ShowMapInfo();
+    }
+}
+
+/** 选定怪物进行对战 */
+void MonsterFight(Monster *monster) {
+    SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
+    printf("                                                             ");//简易清屏(偷懒)
+    SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
+    srand(time(NULL));//以当前时间为种子
+    /* random函数的用法(只能0 - 32767之间)
+    * 随机一个a ~ b的数字, 即 rand() % (b - a + 1) + a; 例如0 ~ 5, 即rand() % 6;
+    */
+    int playerAttact = 0;
+    // 玩家的实际攻击力
+    playerAttact = rand() % (currPlayer->weapon.maxAttack - currPlayer->weapon.minAttack + 1) + currPlayer->weapon.minAttack;
+    int playerDeffence =0;
+    //玩家实际防御力
+    playerDeffence = rand() % (currPlayer->armor.maxDefence - currPlayer->armor.minDefence + 1) + currPlayer->armor.minDefence;
+    //怪物实际掉落的金钱
+    int monsterGold = 0;
+    monsterGold = rand() % (monster->maxMoney - monster->minMoney + 1) + monster->minMoney;
+    int pkRound = 0;    //记录战斗的轮次
+    while(1){//打斗循环, 任意一方死亡退出
+        //玩家血量变化
+        currPlayer->hp -= monster->attact - playerDeffence;
+        //怪物的血量变化
+        monster->hp -= playerAttact - monster->defence;
+        if(monster->hp <= 0) {//怪物的血量少于等于0时退出
+            break;
+        }
+        if(currPlayer->hp <= 0) {//玩家血量小于等于0时退出
+            break;
+        }
+        //以下为打印战斗详情
+        SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
+        printf("                                                                         ");//简易清屏(偷懒)
+        SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
+        pkRound++;
+        //战斗详情使用白底红字
+        SetColor(4,7);
+        //该语句较长......
+        printf("第 %d 轮战斗详情:%s 对 %s 造成了 %d 伤害且受到 %s %d 的伤害", pkRound, currPlayer->name, monster->name, playerAttact - monster->defence, monster->name, monster->attact - playerDeffence);
+        //放慢过程
+        usleep(1000 * 800);//1000毫秒*800
+        SetColor(2, 0);
+    }
+    SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
+    printf("                                                                   ");//简易清屏(偷懒)
+    SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
+    if(currPlayer->hp <= 0) {
+        //玩家死亡输入完任意键后返回
+        printf("江湖快讯: 大侠 %s 在与 %s 的对决中壮烈牺牲! (请按任意键返回)", currPlayer->name, monster->name);
+        //重置人物的金币与血量
+        currPlayer->hp = 100;
+        currPlayer->gold = 100;
+        getch();
+        return;
+    }
+    //以下即为怪物死亡的情况
+    printf("%s 轻而易举的便被 %s 大侠收拾了, 同时掉落了 ", monster->name, currPlayer->name);
+    //将怪物的状态调整至死亡
+    monster->state = 0;
+    //设置金币的front color为黄色, background color为亮白色
+    SetColor(6, 15);
+    printf("%d 金币   ", monsterGold);
+    // 设置经验的front color为黄色, background color为亮白色
+    SetColor(1, 15);
+    printf("%d 经验  ", monster->exp);
+    SetColor(2, 0); //颜色恢复
+    //玩家获得金币与经验值的加成
+    currPlayer->gold += monsterGold;
+    currPlayer->exp += monster->exp;
+    getch();
+    ShowMonster();
 }
