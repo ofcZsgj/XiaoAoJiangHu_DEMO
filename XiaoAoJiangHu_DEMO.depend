@@ -2,14 +2,15 @@
 1550495357 source:d:\studies\c\xajh\xiaoaojianghu_demo\gamelib.c
 	"GameLib.h"
 
-1550500153 d:\studies\c\xajh\xiaoaojianghu_demo\gamelib.h
+1550909289 d:\studies\c\xajh\xiaoaojianghu_demo\gamelib.h
 	<windows.h>
+	<stdlib.h>
 
-1550674089 source:d:\studies\c\xajh\xiaoaojianghu_demo\game.c
+1550914506 source:d:\studies\c\xajh\xiaoaojianghu_demo\game.c
 	"Game.h"
 	"GameLib.h"
 
-1550673387 d:\studies\c\xajh\xiaoaojianghu_demo\game.h
+1550916230 d:\studies\c\xajh\xiaoaojianghu_demo\game.h
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
@@ -17,7 +18,7 @@
 	<windows.h>
 	<unistd.h>
 
-1550673935 source:d:\studies\c\xajh\xiaoaojianghu_demo\main.c
+1550916572 source:d:\studies\c\xajh\xiaoaojianghu_demo\main.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>

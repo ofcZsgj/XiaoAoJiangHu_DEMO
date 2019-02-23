@@ -47,7 +47,7 @@ typedef enum _propType {
 typedef  struct _prop {
     int id;                 //道具编号
     char name[20];          //道具名称
-    double price;           //道具价格
+    int price;           //道具价格
     int level;              //道具等级
     PropType type;    //道具类别
     int stock;              //道具库存
@@ -74,6 +74,13 @@ typedef struct _martial{
     char description[1000];//门派描述
 }Martial;
 
+typedef struct _bag {
+    int playerId;           //所属的玩家Id
+    int propsCount;         //当前背包的道具数量
+    int maxCount;           //背包的最大容量
+    Prop props[8];          //背包中的道具数组, 默认8个
+} Bag;
+
 /** 玩家数据类型 */
 typedef struct  _play {
     char name[30];          //玩家名称
@@ -88,8 +95,7 @@ typedef struct  _play {
     Prop weapon;            //装备的武器
     Prop armor;             //装备的防具
     COORD coord;            //玩家当前坐标 (X, Y)
-    // 玩家背包 (尚未定义背包)
-
+    Bag bag;                //玩家背包
 } Player;
 
 /** 怪物数据类型 */
@@ -147,5 +153,18 @@ void MonsterFight(Monster *monster);
 
 /** 移动坐标 */
 void Move(int x, int y);
+
+/** 展示游戏商品 */
+void ShowProps();
+
+/** 交易
+  * 参数1: 玩家的地址
+  * 参数2: 商品的编号
+  * 返回交易是否成功, 0 失败, 1 成功
+  */
+int Trade(Player *player, int propsId);
+
+/** 接收Trade()返回的值, 判断交易是否成功, 返回 0 表示失败 */
+void showTrade(int flag, int propId);
 
 #endif // GAME_H_INCLUDED

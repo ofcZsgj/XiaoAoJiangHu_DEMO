@@ -6,9 +6,9 @@
 
 extern int X,Y;
 
-int main() {
+int main() {//最好通过一个游戏进程函数将main方法里边的各种方法封装, 通过不同状态执行不同方法
     char key;           //接收用户输入
-    SetColor(2,0);      //设置控制台文本颜色
+    SetColor(2,0);      //设置控制台文本颜色(front color为绿色, background color为黑色)
     SetConsoleTitle("笑傲江湖之精忠报国 C语言实现 BY 左手工匠");    //设置控制台标题
     PropInit();         //初始化测试人物
     ShowWelcome();      //显示欢迎栏
@@ -44,7 +44,7 @@ while (1) {
     else if(key == VK_LEFT || key == 75) {
         X--;            //输入左
     }
-    if(X > 7) {
+    if(X > 7) {//移动到最边的话重新回到0, 如贪食蛇穿过地图边缘
         X = 0;
     }
     if(X < 0) {

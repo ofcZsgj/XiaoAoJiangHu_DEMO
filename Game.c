@@ -5,7 +5,7 @@
 #include "Game.h"
 #include "GameLib.h"
 
-int X = 0;
+int X = 0;      //坐标轴
 int Y = 0;
 
 //#define SEP "------------------------------------------------------------------------------"
@@ -17,7 +17,7 @@ int Y = 0;
 #define INFORMATION_START_Y 12//游戏信息开始行
 #define INFORMATION_END_Y 19  //游戏信息结束行
 #define MAINMENUE_START_Y 20  //游戏主菜单开始行
-#define MAINMENUE_END_Y 28  //游戏主菜单结束行
+#define MAINMENUE_END_Y 28    //游戏主菜单结束行
 #define SEP "*******************************************************************************"
 
 Player playArray[] = {//测试玩家列表
@@ -26,7 +26,7 @@ Player playArray[] = {//测试玩家列表
 };
 
 Monster monsterArray[] = {//怪物列表
-    {1, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=0},
+    {1, "鬼子", 8, 2500, 350, 150, 100, 30, 10, 1, .coord.X=0, .coord.Y=0},
     {2, "鬼子", 4, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=1},
     {3, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=2},
     {4, "鬼子", 3, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=3},
@@ -34,7 +34,7 @@ Monster monsterArray[] = {//怪物列表
     {6, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=0, .coord.Y=5},
     {7, "鬼子", 4, 100, 5, 5, 1, 3, 10, 1, .coord.X=3, .coord.Y=0},
     {8, "鬼子", 1, 100, 5, 5, 1, 3, 10, 1, .coord.X=3, .coord.Y=5},
-    {9, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=0},
+    {9, "汉奸", 7, 2000, 280, 120, 70, 80, 11, 1, .coord.X=0, .coord.Y=0},
     {10, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=1},
     {11, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=0, .coord.Y=2},
     {12, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=2, .coord.Y=3},
@@ -42,7 +42,7 @@ Monster monsterArray[] = {//怪物列表
     {14, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=2, .coord.Y=5},
     {15, "汉奸", 2, 200, 8, 12, 1, 8, 11, 1, .coord.X=4, .coord.Y=4},
     {16, "汉奸", 4, 200, 8, 12, 1, 8, 11, 1, .coord.X=1, .coord.Y=7},
-    {17, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=0},
+    {17, "浪人", 9, 3000, 410, 110, 30, 80, 20, 1, .coord.X=0, .coord.Y=0},
     {18, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=0, .coord.Y=1},
     {19, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=4, .coord.Y=2},
     {20, "浪人", 3, 300, 10, 10, 3, 8, 20, 1, .coord.X=3, .coord.Y=3},
@@ -65,6 +65,9 @@ Monster monsterArray[] = {//怪物列表
     {37, "鬼子", 7, 2000, 365, 350, 1, 3, 10, 1, .coord.X=0, .coord.Y=6},
     {38, "浪人", 8, 3000, 400, 100, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
     {39, "浪人", 6, 3000, 400, 100, 3, 8, 20, 1, .coord.X=0, .coord.Y=6},
+    {40, "浪人", 9, 3000, 410, 110, 30, 80, 20, 1, .coord.X=0, .coord.Y=0},
+    {41, "浪人", 5, 2000, 180, 50, 10, 30, 20, 1, .coord.X=0, .coord.Y=0},
+    {42, "浪人", 6, 2200, 210, 60, 20, 40, 20, 1, .coord.X=0, .coord.Y=0},
 };
 
 Map mapArray[8][8] = {//游戏地图列表
@@ -187,11 +190,13 @@ Prop propArray[] = {//游戏道具列表
 };
 
 Player *currPlayer;
-void PropInit() {
+void PropInit() {//初始化游戏数据 (测试用数据)
     currPlayer = &playArray[0];
     currPlayer->weapon = propArray[8];
     currPlayer->armor = propArray[4];
     currPlayer->martial = martials[4];
+    Bag bag = {95001, 0, 8};
+    currPlayer->bag = bag;
 }
 
 /** 打印道具类数据 */
@@ -233,7 +238,7 @@ void ShowMap() {                                //8 * 8 地图, 8 * 77 区域
         SetPosition(MAXGIN_X, MAPSART_END_Y);
         printf("%s", SEP);
     }
-    ShowMapInfo();
+    ShowMapInfo();//显示地图信息
 }
 
 /** 显示地图信息 */
@@ -307,11 +312,17 @@ void ShowMainMenu() {
 void ShowPlayerInfo() {
     Clear(MAXGIN_X, INFORMATION_START_Y, 7);
     SetPosition(MAXGIN_X + 26, INFORMATION_START_Y);
-    printf("大侠 %s 的装备属性如下: ", currPlayer->name);
-    SetPosition(MAXGIN_X + 10, INFORMATION_START_Y + 1);
-    printf("等级: %d\t 金币: %d\t  气血值: %d\t  内力值: %d\t", currPlayer->level, currPlayer->gold, currPlayer->hp, currPlayer->mp);
+    //以下用于展示玩家当前属性以及装备
+    printf("大侠 ", currPlayer->name);
+    SetColor(1, 0);//玩家名字黑底, 蓝色字
+    printf("%s: ", currPlayer->name);
+    SetColor(2, 0);
+    printf(" 的装备属性如下: ");
+    SetPosition(MAXGIN_X + 5, INFORMATION_START_Y + 1);
+    printf("等级: %d  金币: %d  帮派:%s  气血值: %d  内力值: %d", currPlayer->level, currPlayer->gold, currPlayer->martial.name, currPlayer->hp, currPlayer->mp);
     SetPosition(MAXGIN_X + 10, INFORMATION_START_Y + 2);
     printf("当前武器:");
+    //频繁设置颜色为了仅仅突出武器的颜色
     SetColor(5,0);
     printf("%s(%d-%d) ", currPlayer->weapon.name, currPlayer->weapon.minAttack,currPlayer->weapon.maxAttack);
     SetColor(2,0);
@@ -319,6 +330,28 @@ void ShowPlayerInfo() {
     SetColor(5,0);
     printf("%s(%d-%d)", currPlayer->armor.name, currPlayer->armor.minDefence,currPlayer->armor.maxAttack);
     SetColor(2,0);
+    SetPosition(MAXGIN_X + 4, INFORMATION_START_Y + 3);
+    printf("-----------------------------------------------------------------------");
+    //以下用于展示背包信息
+    if(currPlayer->bag.propsCount == 0) {
+        //若玩家背包内无物品, 给予提示
+        SetPosition(MAXGIN_X + 16, INFORMATION_START_Y + 4);
+        SetColor(4,  0);//红字黑底
+        printf("背包空荡荡的什么也没有, 行走江湖可得多加小心啊");
+    }
+    else {
+        //背包不为空打印背包道具
+        SetPosition(MAXGIN_X + 5, INFORMATION_START_Y + 4);
+        for(int i = 0; i < currPlayer->bag.propsCount; i++) {//最多打印九个道具
+            if(i % 3 == 0 && i != 0){
+                //设置每行打印三个道具
+                SetPosition(MAXGIN_X + 5, INFORMATION_START_Y + 4 + i / 3);
+            }
+            SetColor(6, 0);
+            printf("%-12s(%d)\t  ", currPlayer->bag.props[i].name, currPlayer->bag.props[i].stock);
+        }
+    }
+    SetColor(2, 0);
 }
 
 /** 执行游戏主菜单功能 */
@@ -330,7 +363,7 @@ void GameProcess(char key) {
             break;
         case '3': Move(currPlayer->martial.hqCoord.X, currPlayer->martial.hqCoord.Y);//移动到玩家的帮派地图中
             break;
-        case '4':
+        case '4': ShowProps();//展示游戏商品
             break;
         default : printf("少侠究竟想要作甚?");
     }
@@ -364,7 +397,9 @@ void ShowMonster() {
     // 打印怪物
     SetPosition(MAXGIN_X + 5, INFORMATION_START_Y + 1);
     if(currMapMonsterCount == 0) {
+        SetColor(7, 0);//白字黑底
         printf("这里冷冷清清的什么也没有, 少侠还是到别处看看吧, 呆着也没银子给你!");
+        SetColor(2, 0);//恢复颜色
         return;
     }
 
@@ -382,8 +417,10 @@ void ShowMonster() {
             }
             //打印怪物, 较为繁琐
             //monsterIndex[i]即为该怪物列表中的怪物编号
+            SetColor(4, 0);//红字怪物
             printf("%d.%s(%s)\t  ", i + 1, monsterArray[monsterIndex[i]].name, monsterlevelNames[monsterArray[monsterIndex[i]].level - 1]);
         }
+        SetColor(2, 0);//恢复颜色
         SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
         printf("少侠想攻击几号怪物呢? (按0返回)");
         scanf("%d", &pkMonsterId);
@@ -397,8 +434,8 @@ void ShowMonster() {
             printf("                                                             ");
             SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
             printf("少侠选错了吧, 怪物不存在呢!(按任意键重新输入)");
-            char recoverKey = getchar();
-            if(!recoverKey){//停顿直到接收任意键后重新显示怪物
+            char recoverKey = getch();
+            if(recoverKey){//停顿直到接收任意键后重新显示怪物
                 continue;
             }
         }
@@ -490,4 +527,129 @@ void Move(int x, int y) {
     Y = y;
     X = x;
     ShowMap();
+}
+
+/** 展示游戏商品 */
+void ShowProps() {
+    Clear(MAXGIN_X, INFORMATION_START_Y, 7);
+    SetPosition(MAXGIN_X + 5, INFORMATION_START_Y);
+    SetColor(8, 0);     //灰字黑底
+    printf("欢迎大侠 %s 来到 %s 童叟无欺的杂货铺, 瞧一瞧看一看可有需要的?", currPlayer->name, mapArray[X][Y].name);
+    SetColor(6, 0);     //黄字黑底
+    SetPosition(MAXGIN_X + 5, INFORMATION_START_Y + 2);
+    int propCount = sizeof(propArray) / sizeof(Prop) >= 9 ? 9 : sizeof(propArray) / sizeof(Prop);
+    for(int i = 0; i < propCount; i++) {
+        if(i % 3 == 0) {//打印商品, 每行 3 个, 且只打印最多 9 个
+            SetPosition(MAXGIN_X + 5, INFORMATION_START_Y + 2 + i / 3);
+        }
+        printf("%-3d.%-10s(%-2d)%-4c", propArray[i].id, propArray[i].name, propArray[i].stock, ' ');
+    }
+    SetColor(2, 0);//恢复颜色
+
+    int tradeId;//接收用户输入的商品编号
+    while(1) {
+        //用于判断输入编号是否正确(此判断未包括检验玩家金币及商品库存及玩家背包是否已满等状态)
+        Clear(MAXGIN_X, INFORMATION_END_Y - 1, 1);
+        SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
+        printf("大侠需要什么, 请输入编号立即购买(按 0 退出)");
+        scanf("%d", &tradeId);
+        if(tradeId == 0) {//输入0返回显示地图信息
+            ShowMapInfo();
+            break;
+        }
+        else if(tradeId < 0 || tradeId > 9) {//输入的商品编号错误的情况, 重新输入
+            Clear(MAXGIN_X, INFORMATION_END_Y - 1, 1);
+            SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
+            printf("少侠选错了吧, 商品不存在呢!(按任意键重新输入)");
+            char recoverKey = getch();
+            if(recoverKey){//停顿直到接收任意键后重新显示怪物
+                continue;
+            }
+        }
+        else {//输入在1 - 9的情况, 将编号传入交易函数
+            showTrade(Trade(currPlayer, tradeId), tradeId);
+            }
+        }
+}
+
+/** 交易
+  * 参数1: 玩家的地址
+  * 参数2: 商品的编号
+  * 返回交易是否成功, 0 失败, 1 成功
+  */
+int Trade(Player *player, int propsId) {
+    Prop *tradeProp = NULL;     //定义一个用于指向及交易商品的指针
+    for(int i = 0; i < sizeof(propArray) / sizeof(Prop); i++) {
+        if(propsId == propArray[i].id) {//找到该商品, 并让tradeProp指向它
+            tradeProp = propArray + i;  //即tradeProp = &propArray[i]
+            break;
+        }
+    }
+    //判断商品是否有库存
+    if(tradeProp->stock <= 0) {
+        Clear(MAXGIN_X, INFORMATION_END_Y - 1, 1);
+        SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
+        printf("地主家都没有余粮！商店都被买空啦！");
+        return 0;
+    }
+    //判断玩家是否金币足够支付
+    if(currPlayer->gold < tradeProp->price) {
+        Clear(MAXGIN_X, INFORMATION_END_Y - 1, 1);
+        SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
+        printf("钱包都是瘪的，这可是个看钱的江湖！！!");
+        return 0;
+    }
+    //判断玩家背包容量是否充足
+    if(currPlayer->bag.propsCount > currPlayer->bag.maxCount && currPlayer->bag.propsCount != 0) {
+        //玩家的背包道具数量大于最大容量并且背包道具数不为0则判定为失败
+        Clear(MAXGIN_X, INFORMATION_END_Y - 1, 1);
+        SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
+        printf("背包已满，交易失败！");
+        return 0;
+    }
+    //满足交易条件，执行交易的业务操作
+    //1、商品库存-1
+    tradeProp->stock--;
+    //2、玩家金币-商品单价
+    player->gold -= tradeProp->price;
+
+    //*****************************玩家背包道具增加*******************************//
+    //判断玩家背包中是否已有该商品 !!!
+    int i;
+    for(i = 0; i < currPlayer->bag.propsCount; i++) {
+        if(propsId == currPlayer->bag.props[i].id) {
+            currPlayer->bag.props[i].stock++;
+            break;
+        }
+    }
+    //若为循环正常结束, i = currPlayer->bag.propsCount, 即为背包无此商品, 需要给背包添加该商品!!!
+    if(i == currPlayer->bag.propsCount) {
+        //向背包中创建一个商品-复制一份要交易的商品信息到背包中
+        currPlayer->bag.props[currPlayer->bag.propsCount].id = tradeProp->id;
+        currPlayer->bag.props[currPlayer->bag.propsCount].price = tradeProp->price;
+        currPlayer->bag.props[currPlayer->bag.propsCount].stock = 1;
+        strcpy(currPlayer->bag.props[currPlayer->bag.propsCount].name, tradeProp->name);
+        strcpy(currPlayer->bag.props[currPlayer->bag.propsCount].desc, tradeProp->desc);
+        currPlayer->bag.propsCount++;
+    }
+    //交易成功
+    return 1;
+}
+
+/** 接收Trade()返回的值, 判断交易是否成功 */
+void showTrade(int flag, int propId) {
+    if(flag == 0) {
+        ShowMapInfo();
+        return;
+    }
+    if(flag == 1) {
+        Clear(MAXGIN_X, INFORMATION_END_Y - 1, 1);
+        SetPosition(MAXGIN_X + 5, INFORMATION_END_Y - 1);
+        printf("交易成功, ");
+        SetColor(6, 0);     //打印装备为黑底黄字
+        printf("%s", propArray[propId - 1].name);
+        SetColor(2, 0);     //恢复黑底绿字
+        printf(" 已经加入你的背包, 赶紧瞧一瞧吧!(按任意键继续)");
+        getch();            //暂停
+    }
 }

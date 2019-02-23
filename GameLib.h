@@ -6,6 +6,7 @@
 #define GAMELIB_H_INCLUDED
 
 #include <windows.h>
+#include <stdlib.h>
 
 /********************************************************************
  *  Project:笑傲江湖之精忠报国Demo
