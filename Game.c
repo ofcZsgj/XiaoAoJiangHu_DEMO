@@ -219,8 +219,9 @@ void ShowWelcome() {
 
 /** 显示游戏地图 */
 void ShowMap() {                                //8 * 8 地图, 8 * 77 区域
-    printf("\n");
     SetPosition(MAXGIN_X, MAPSART_START_Y);              //调节光标使得地图对齐标题
+    Clear(MAXGIN_X, MAPSART_START_Y, 4);
+    SetPosition(MAXGIN_X, MAPSART_START_Y);
     printf("*");
     for(int i = 0; i < (MAPSART_END_Y - MAPSART_START_Y); i++) {
         SetPosition(MAXGIN_X, i + MAPSART_START_Y);      //调节光标使每一行首打印'*'字符
@@ -652,4 +653,44 @@ void showTrade(int flag, int propId) {
         printf(" 已经加入你的背包, 赶紧瞧一瞧吧!(按任意键继续)");
         getch();            //暂停
     }
+}
+
+/** 玩家登陆(暂无注册) */
+void Login() {
+    while(1) {
+        char id[10];
+        char key[10];       //接收用户输入的id 和 passwd
+        SetColor(2, 0);
+        Clear(MAXGIN_X, MAPSART_START_Y, 4);
+        SetPosition(MAXGIN_X + 24, MAPSART_START_Y);
+        printf("请在下方输入您的用户名和密码");
+        SetPosition(MAXGIN_X + 5, MAPSART_START_Y + 1);
+        printf("用户名: ");
+        scanf("%s", id);
+        SetPosition(MAXGIN_X + 5, MAPSART_START_Y  + 2);
+        printf("密码(无回显哦): ");
+        scanf("%s", key);
+        //判断玩家输入的信息是否与玩家id, passwd匹配
+        if(strcmp(currPlayer->id, id) == 0 && strcmp(currPlayer->passwd, key) == 0) {
+            //只有玩家输入成功才跳出死循环
+            break;
+        }
+        else {
+            SetPosition(MAXGIN_X + 5, MAPSART_START_Y + 3);
+            SetColor(12, 0);    //浅红色字体
+            printf("用户名或密码错误, 请检查后再次输入!(按任意键继续)");
+            getch();
+        }
+    }
+    //用户输入成功后
+    SetColor(12, 0);
+    SetPosition(MAXGIN_X, MAPSART_START_Y);
+    Clear(MAXGIN_X, MAPSART_START_Y, 4);
+    SetPosition(MAXGIN_X + 15, MAPSART_START_Y);
+    printf("欢迎 ");
+    SetColor(1, 0);      //蓝字显示玩家name
+    printf("%s", currPlayer->name);
+    SetColor(2, 0);
+    printf(" 成功登陆笑傲江湖的世界(按任意键继续)");
+    getch();    //暂停
 }

@@ -12,6 +12,7 @@ int main() {//最好通过一个游戏进程函数将main方法里边的各种方法封装, 通过不同状态
     SetConsoleTitle("笑傲江湖之精忠报国 C语言实现 BY 左手工匠");    //设置控制台标题
     PropInit();         //初始化测试人物
     ShowWelcome();      //显示欢迎栏
+    Login();            //登陆, 登陆成功继续执行
     ShowMap();          //显示地图
     ShowInformation();  //显示信息栏
     ShowMainMenu();     //显示菜单栏

@@ -164,7 +164,10 @@ void ShowProps();
   */
 int Trade(Player *player, int propsId);
 
-/** 接收Trade()返回的值, 判断交易是否成功, 返回 0 表示失败 */
+/** 接收Trade()返回的值, 判断交易是否成功 */
 void showTrade(int flag, int propId);
+
+/** 玩家登陆(暂无注册) */
+void Login();
 
 #endif // GAME_H_INCLUDED
