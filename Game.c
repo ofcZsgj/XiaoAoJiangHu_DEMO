@@ -246,7 +246,10 @@ void ShowMap() {                                //8 * 8 地图, 8 * 77 区域
 void ShowMapInfo() {
     Clear(MAXGIN_X, INFORMATION_START_Y,  7);       //对信息区域进行清屏
     SetPosition(MAXGIN_X + 24, INFORMATION_START_Y);
-    printf("当前地图为: %s", mapArray[X][Y].name);       //打印当前地图名称
+    printf("当前地图为: ");       //打印当前地图名称
+    SetColor(7, 0); //高亮地图名称颜色, 白字
+    printf("%s", mapArray[X][Y].name);       //打印当前地图名称
+    SetColor(2, 0); //恢复颜色
     SetPosition(MAXGIN_X + 7, INFORMATION_START_Y + 1);
     char *desc;      //指向要打印的地图的描述信息的字符指针
     desc = mapArray[X][Y].desc;
@@ -532,6 +535,8 @@ void Move(int x, int y) {
 
 /** 展示游戏商品 */
 void ShowProps() {
+    //此方法应拆分为打印商品 以及用户输入并检验商品编号两个方法!!!!!!!!
+    /*******************************/
     Clear(MAXGIN_X, INFORMATION_START_Y, 7);
     SetPosition(MAXGIN_X + 5, INFORMATION_START_Y);
     SetColor(8, 0);     //灰字黑底
@@ -568,7 +573,24 @@ void ShowProps() {
             }
         }
         else {//输入在1 - 9的情况, 将编号传入交易函数
-            showTrade(Trade(currPlayer, tradeId), tradeId);
+            showTrade(Trade(currPlayer, tradeId), tradeId);//******调用交易方法, 展示交易信息方法******//
+            //以下为重新刷新商品列表, 应该封装为一个打印商品的方法, 该ShowProps()方法过于繁琐, 加入了打印以及检验两个功能
+            /********************************/
+            Clear(MAXGIN_X, INFORMATION_START_Y, 7);
+            SetPosition(MAXGIN_X + 5, INFORMATION_START_Y);
+            SetColor(8, 0);     //灰字黑底
+            printf("欢迎大侠 %s 来到 %s 童叟无欺的杂货铺, 瞧一瞧看一看可有需要的?", currPlayer->name, mapArray[X][Y].name);
+            SetColor(6, 0);     //黄字黑底
+            SetPosition(MAXGIN_X + 5, INFORMATION_START_Y + 2);
+            int propCount = sizeof(propArray) / sizeof(Prop) >= 9 ? 9 : sizeof(propArray) / sizeof(Prop);
+            for(int i = 0; i < propCount; i++) {
+                if(i % 3 == 0) {//打印商品, 每行 3 个, 且只打印最多 9 个
+                    SetPosition(MAXGIN_X + 5, INFORMATION_START_Y + 2 + i / 3);
+                }
+                printf("%-3d.%-10s(%-2d)%-4c", propArray[i].id, propArray[i].name, propArray[i].stock, ' ');
+            }
+            SetColor(2, 0);//恢复颜色
+            /********************************/
             }
         }
 }
@@ -668,8 +690,16 @@ void Login() {
         printf("用户名: ");
         scanf("%s", id);
         SetPosition(MAXGIN_X + 5, MAPSART_START_Y  + 2);
-        printf("密码(无回显哦): ");
-        scanf("%s", key);
+        printf("密码(无回显哦回车确定): ");
+        for(int i = 0; 1; i++) {
+            key[i] = getch();//无回显输入密码
+            if(key[i] == 13) {
+                //接收到回车跳出循环
+                //将回车字符重置为空字符
+                key[i] = '\0';
+                break;
+            }
+        }
         //判断玩家输入的信息是否与玩家id, passwd匹配
         if(strcmp(currPlayer->id, id) == 0 && strcmp(currPlayer->passwd, key) == 0) {
             //只有玩家输入成功才跳出死循环
